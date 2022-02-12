@@ -15,6 +15,7 @@ func main() {
 	if err != nil {
 		panic("aws session")
 	}
+	internal.Create(sess, "queue-name")
 	internal.Run(sess)
 
 }
