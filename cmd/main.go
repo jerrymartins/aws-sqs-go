@@ -15,7 +15,9 @@ func main() {
 	if err != nil {
 		panic("aws session")
 	}
-	internal.Create(sess, "queue-name")
-	internal.Run(sess)
-
+	internal.Create(sess, "temp-queue")
+	internal.List(sess)
+	queueUrl, _ := internal.GetUrl(sess, "temp-queue")
+	internal.Delete(sess, queueUrl)
+	internal.List(sess)
 }

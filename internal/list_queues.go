@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
-func Run(s *session.Session) {
+func List(s *session.Session) {
 	svc := sqs.New(s)
 	result, err := svc.ListQueues(nil)
 

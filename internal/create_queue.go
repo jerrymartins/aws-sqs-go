@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
-func Create(s *session.Session, queueName string) *string {
+func Create(s *session.Session, queueName string) (*string, error) {
 	svc := sqs.New(s)
 
 	result, err := svc.CreateQueue(&sqs.CreateQueueInput{
@@ -18,8 +18,8 @@ func Create(s *session.Session, queueName string) *string {
 	})
 
 	if err != nil {
-		panic("error creating queue")
+		return nil, err
 	}
 
-	return result.QueueUrl
+	return result.QueueUrl, nil
 }
